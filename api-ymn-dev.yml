@@ -1,0 +1,49 @@
+server:
+  port: 8085
+  
+spring:
+  application:
+    name: api-ymn
+
+eureka:
+  client:
+    enabled : false
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+    healthcheck:
+      enabled: true
+
+zuul:
+  routes:
+    person-service:
+      path: /person/**
+      url: http://localhost:8181/person
+    taxi-service:
+      path: /taxi/**
+      url: http://localhost:8182/taxi
+      
+logging:
+  config: classpath:./logback-spring.xml
+  
+log:
+  path: D:/var/logs/${spring.application.name}
+  level:
+    root: INFO
+    gdc: TRACE
+    api: TRACE
+
+gdc:
+  server:
+    ip: localhost
+    port: 0
+  cache:
+    redis:
+      server: 127.0.0.1
+      port: 6379
+      password: 0
+  msgbroker:
+    rabbitmq:
+      host: localhost
+      username : guest
+      password : guest
+      port : 61613
