@@ -16,20 +16,20 @@ zuul:
   routes:
     person-service:
       path: /apiperson/**
-      #url: http://localhost:8181/
-      serviceId: gdc-person-service
+      url: http://localhost:8181/
+      #serviceId: gdc-person-service
     shop-service:
       path: /apishop/**
-      #url: http://localhost:8183/
-      serviceId: gdc-shop-service
+      url: http://localhost:8183/
+      #serviceId: gdc-shop-service
     item-service:
       path: /apiitem/**
-      #url: http://localhost:8184/
-      serviceId: gdc-item-service
+      url: http://localhost:8184/
+      #serviceId: gdc-item-service
     auth-service:
       path: /apiauth/**
-      #url: http://localhost:8762/
-      serviceId: gdc-auth-service
+      url: http://localhost:8762/
+      #serviceId: gdc-auth-service
       sensitiveHeaders:
       
 ribbon:
