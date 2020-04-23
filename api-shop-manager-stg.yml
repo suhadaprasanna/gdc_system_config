@@ -1,0 +1,84 @@
+
+eureka:
+  client:
+    enabled : true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+    healthcheck:
+      enabled: true
+    registryFetchIntervalSeconds: 15
+  #instance:
+    #instance-id: ${spring.application.name}-${random.int}
+    #hostname: localhost
+
+zuul:
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+  routes:
+    person-service:
+      path: /apiperson/**
+      #url: http://localhost:8181/
+      serviceId: gdc-person-service
+    shop-service:
+      path: /apishop/**
+      #url: http://localhost:8183/
+      serviceId: gdc-shop-service
+    item-service:
+      path: /apiitem/**
+      #url: http://localhost:8184/
+      serviceId: gdc-item-service
+    auth-service:
+      path: /apiauth/**
+      #url: http://localhost:8762/
+      serviceId: gdc-auth-service
+      sensitiveHeaders:
+      
+ribbon:
+  ServerListRefreshInterval: 5000
+  ReadTimeout: 30000
+
+security:
+  oauth2:
+    resource:
+      token-info-uri: http://localhost:8762/oauth/check_token
+    client:
+      client-id: gdcapishop
+      client-secret: gdcapishopsecret
+
+logging:
+  config: classpath:./logback-spring.xml
+  
+log:
+  path: D:/var/logs/${spring.application.name}
+  level:
+    root: INFO
+    gdc: TRACE
+    api: TRACE
+
+gdc:
+  server:
+    ip: localhost
+    port: 0
+  cache:
+    redis:
+      server: 127.0.0.1
+      port: 6379
+      password: 0
+  msgbroker:
+    rabbitmq:
+      host: localhost
+      username : guest
+      password : guest
+      port : 61613
+  datasource:
+    first:
+      url: jdbc:mysql://localhost:3306/gdc_shop
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+      hibernate-ddl-auto: none
+      show-sql: true
+      databasePlatform: org.hibernate.dialect.MySQL5InnoDBDialect
+  auth:
+    secret-key: thisisasecreatkey
+    expire-time: 3600000
+      

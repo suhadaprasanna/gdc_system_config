@@ -4,18 +4,21 @@ spring:
     show-sql: true
     databasePlatform: org.hibernate.dialect.MySQL5InnoDBDialect
   datasource:
-    url: jdbc:mysql://localhost:3306/gdc_item
+    url: jdbc:mysql://localhost:3306/gdc_person
     username: root
     password: root
     driverClassName: com.mysql.jdbc.Driver
-
+    
 eureka:
   client:
-    enabled : false
+    enabled : true
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
     healthcheck:
       enabled: true
+  #instance:
+    #instance-id: ${spring.application.name}-${random.int}
+    #hostname: localhost
       
 logging:
   config: classpath:./logback-spring.xml
@@ -33,10 +36,3 @@ gdc:
       server: 127.0.0.1
       port: 6379
       password: 0
-  msgbroker:
-    rabbitmq:
-      host: localhost
-      username : guest
-      password : guest
-      port : 61613
-    
