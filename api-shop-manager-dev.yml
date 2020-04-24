@@ -16,11 +16,11 @@ zuul:
   routes:
     person-service:
       path: /apiperson/**
-      url: http://localhost:8181/
+      url: http://localhost:8183/
       #serviceId: gdc-person-service
     shop-service:
       path: /apishop/**
-      url: http://localhost:8183/
+      url: http://localhost:8181/
       #serviceId: gdc-shop-service
     item-service:
       path: /apiitem/**
